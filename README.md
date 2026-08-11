@@ -1,29 +1,38 @@
-# Welcome to your Lovable project
+# Shyam Sundar Portfolio
 
-This project was built with [Lovable](https://lovable.dev).
+My personal portfolio website showcasing my projects, technical skills, certifications, and experience.
 
-## Build with Lovable
+🔗 **Live Website:** https://shyamsundar.app
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+---
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+## Tech Stack
 
-## Development
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui
+- Framer Motion
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+---
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+
+## 🛠️ Installation
+
+```bash
+git clone https://github.com/shyaamsundar/shyam-portfolio.git
+cd shyam-portfolio
+npm install
 npm run dev
 ```
 
-## Built with
+---
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+## 📦 Build
+
+```bash
+npm run build
+```
+
+---
