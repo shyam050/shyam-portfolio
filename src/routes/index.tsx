@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Download, Github, Linkedin, Mail, Menu, Terminal, X } from "lucide-react";
 import { useState } from "react";
 
+import { ThemeToggle } from "../components/ThemeToggle";
+
 import labImage from "../assets/engineering-lab.jpg";
 import robotImage from "../assets/engineering-robot.jpg";
 import notesImage from "../assets/engineering-notes.jpg";
@@ -100,12 +102,54 @@ const experience = [
   },
 ];
 
+const devicon = (path: string) => `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${path}.svg`;
+
 const skills = [
-  { group: "Languages", items: ["Java", "Python", "TypeScript", "JavaScript", "C++", "SQL"] },
-  { group: "Backend", items: ["Spring Boot", "Node.js", "Flask", "REST APIs", "PostgreSQL", "MySQL"] },
-  { group: "Frontend", items: ["React", "Angular", "TailwindCSS", "HTML/CSS"] },
-  { group: "Tools & Platforms", items: ["Git", "Linux", "AWS", "Docker basics", "ROS", "Electron"] },
+  {
+    group: "Languages",
+    items: [
+      { name: "Java", icon: devicon("java/java-original") },
+      { name: "Python", icon: devicon("python/python-original") },
+      { name: "TypeScript", icon: devicon("typescript/typescript-original") },
+      { name: "JavaScript", icon: devicon("javascript/javascript-original") },
+      { name: "C++", icon: devicon("cplusplus/cplusplus-original") },
+      { name: "SQL", icon: devicon("azuresqldatabase/azuresqldatabase-original") },
+    ],
+  },
+  {
+    group: "Backend",
+    items: [
+      { name: "Spring Boot", icon: devicon("spring/spring-original") },
+      { name: "Node.js", icon: devicon("nodejs/nodejs-original") },
+      { name: "Flask", icon: devicon("flask/flask-original") },
+      { name: "Express", icon: devicon("express/express-original") },
+      { name: "PostgreSQL", icon: devicon("postgresql/postgresql-original") },
+      { name: "MySQL", icon: devicon("mysql/mysql-original") },
+    ],
+  },
+  {
+    group: "Frontend",
+    items: [
+      { name: "React", icon: devicon("react/react-original") },
+      { name: "Angular", icon: devicon("angularjs/angularjs-original") },
+      { name: "TailwindCSS", icon: devicon("tailwindcss/tailwindcss-original") },
+      { name: "HTML5", icon: devicon("html5/html5-original") },
+      { name: "CSS3", icon: devicon("css3/css3-original") },
+    ],
+  },
+  {
+    group: "Tools & Platforms",
+    items: [
+      { name: "Git", icon: devicon("git/git-original") },
+      { name: "Linux", icon: devicon("linux/linux-original") },
+      { name: "AWS", icon: devicon("amazonwebservices/amazonwebservices-original-wordmark") },
+      { name: "Docker", icon: devicon("docker/docker-original") },
+      { name: "ROS", icon: devicon("ros/ros-original") },
+      { name: "Electron", icon: devicon("electron/electron-original") },
+    ],
+  },
 ];
+
 
 function PortfolioHome() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -113,7 +157,7 @@ function PortfolioHome() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
-        <nav className="mx-auto flex max-w-3xl items-center justify-between px-5 py-4" aria-label="Main navigation">
+        <nav className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4" aria-label="Main navigation">
           <a href="#top" className="flex items-center gap-2 font-mono text-sm font-bold tracking-tight">
             <Terminal className="size-4 text-primary" /> shyam<span className="text-primary">.dev</span>
           </a>
@@ -126,7 +170,9 @@ function PortfolioHome() {
             ))}
           </div>
 
-          <button
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
             className="grid size-9 place-items-center rounded-md border border-border transition-colors hover:border-primary hover:text-primary sm:hidden"
@@ -134,7 +180,8 @@ function PortfolioHome() {
             aria-expanded={menuOpen}
           >
             {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
-          </button>
+            </button>
+          </div>
         </nav>
 
         {menuOpen && (
@@ -149,7 +196,7 @@ function PortfolioHome() {
       </header>
 
       <section id="top" className="grid-bg relative border-b border-border">
-        <div className="mx-auto max-w-3xl px-5 py-20 sm:py-28">
+        <div className="mx-auto max-w-5xl px-5 py-20 sm:py-28">
           <p className="animate-rise-in mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 font-mono text-[11px] text-muted-foreground">
             <span className="size-2 rounded-full bg-primary" /> Open to New Grad SWE roles · 2027
           </p>
@@ -203,15 +250,15 @@ function PortfolioHome() {
       </section>
 
       <section id="projects" className="border-b border-border">
-        <div className="mx-auto max-w-3xl px-5 py-16 sm:py-24">
+        <div className="mx-auto max-w-5xl px-5 py-16 sm:py-24">
           <h2 className="font-display text-sm font-bold uppercase tracking-[0.2em] text-primary">// Projects</h2>
           <p className="mt-3 text-lg text-muted-foreground">Selected engineering work, with the decisions behind it.</p>
 
-          <div className="mt-10 flex flex-col gap-8">
+          <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
             {projects.map((project) => (
               <article
                 key={project.title}
-                className="group overflow-hidden rounded-lg border border-border bg-surface transition-colors hover:border-primary/60"
+                className="group flex flex-col overflow-hidden rounded-xl border border-border bg-surface transition-colors hover:border-primary/60"
               >
                 <img
                   src={project.image}
@@ -219,33 +266,33 @@ function PortfolioHome() {
                   loading="lazy"
                   width={1200}
                   height={630}
-                  className="h-44 w-full object-cover opacity-80 transition-opacity duration-500 group-hover:opacity-100 sm:h-56"
+                  className="h-52 w-full object-cover opacity-80 transition-opacity duration-500 group-hover:opacity-100"
                 />
-                <div className="p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <h3 className="font-display text-xl font-bold">{project.title}</h3>
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <h3 className="truncate font-display text-xl font-bold">{project.title}</h3>
                       <p className="mt-1 font-mono text-xs text-primary">{project.role}</p>
                     </div>
                     <a
                       href={project.repo}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1 font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
+                      className="inline-flex shrink-0 items-center gap-1 font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
                       aria-label={`View ${project.title} on GitHub`}
                     >
                       Code <ArrowUpRight className="size-3.5" />
                     </a>
                   </div>
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
-                  <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
+                  <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-xs text-muted-foreground">
                     {project.highlights.map((item) => (
-                      <li key={item} className="flex items-center gap-2">
+                      <li key={item} className="flex items-center gap-1.5">
                         <span className="size-1.5 rounded-full bg-primary" /> {item}
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-5 flex flex-wrap gap-2">
+                  <div className="mt-auto pt-5 flex flex-wrap gap-2">
                     {project.stack.map((tech) => (
                       <span
                         key={tech}
@@ -263,7 +310,7 @@ function PortfolioHome() {
       </section>
 
       <section id="experience" className="border-b border-border">
-        <div className="mx-auto max-w-3xl px-5 py-16 sm:py-24">
+        <div className="mx-auto max-w-5xl px-5 py-16 sm:py-24">
           <h2 className="font-display text-sm font-bold uppercase tracking-[0.2em] text-primary">// Experience &amp; education</h2>
 
           <div className="mt-10 border-l border-border pl-6">
@@ -287,19 +334,24 @@ function PortfolioHome() {
       </section>
 
       <section id="skills" className="border-b border-border">
-        <div className="mx-auto max-w-3xl px-5 py-16 sm:py-24">
+        <div className="mx-auto max-w-5xl px-5 py-16 sm:py-24">
           <h2 className="font-display text-sm font-bold uppercase tracking-[0.2em] text-primary">// Technical skills</h2>
-          <div className="mt-10 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {skills.map((skill) => (
-              <div key={skill.group} className="bg-surface p-6">
-                <h3 className="font-mono text-xs uppercase tracking-wide text-primary">{skill.group}</h3>
-                <div className="mt-4 flex flex-wrap gap-2">
+              <div key={skill.group} className="rounded-xl border border-border bg-surface p-8 transition-colors hover:border-primary/50">
+                <h3 className="font-mono text-sm font-semibold uppercase tracking-wide text-primary">{skill.group}</h3>
+                <div className="mt-5 flex flex-wrap gap-2.5">
                   {skill.items.map((item) => (
-                    <span key={item} className="rounded-md bg-secondary px-2.5 py-1 text-sm text-muted-foreground">
-                      {item}
+                    <span
+                      key={item.name}
+                      className="flex items-center gap-2 rounded-md border border-border bg-secondary px-3 py-1.5 font-mono text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground"
+                    >
+                      <img src={item.icon} alt="" aria-hidden="true" loading="lazy" className="size-5" />
+                      {item.name}
                     </span>
                   ))}
                 </div>
+
               </div>
             ))}
           </div>
@@ -307,7 +359,7 @@ function PortfolioHome() {
       </section>
 
       <section id="contact">
-        <div className="mx-auto max-w-3xl px-5 py-16 sm:py-24">
+        <div className="mx-auto max-w-5xl px-5 py-16 sm:py-24">
           <h2 className="font-display text-sm font-bold uppercase tracking-[0.2em] text-primary">// Contact</h2>
           <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
             I&apos;m actively interviewing for new-grad software engineering roles starting 2027. Happy to talk about
@@ -332,7 +384,7 @@ function PortfolioHome() {
       </section>
 
       <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-3xl flex-col gap-3 px-5 py-8 font-mono text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto flex max-w-5xl flex-col gap-3 px-5 py-8 font-mono text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 Shyam Sundar</span>
           <div className="flex items-center gap-5">
             <a href="mailto:SHYAMSUNDAR4005@GMAIL.COM" className="transition-colors hover:text-primary">Email</a>

@@ -71,6 +71,23 @@
   color-scheme: dark;
 }
 
+.light {
+  color-scheme: light;
+
+  --background: oklch(0.98 0.005 275);
+  --foreground: oklch(0.22 0.03 275);
+  --surface: oklch(0.955 0.008 275);
+  --surface-2: oklch(0.91 0.015 275);
+  --indigo: oklch(0.52 0.2 279);
+  --indigo-soft: oklch(0.62 0.16 279);
+
+  --muted-foreground: oklch(0.48 0.02 275);
+  --primary-foreground: oklch(0.99 0.003 275);
+  --border: oklch(0.22 0.03 275 / 14%);
+  --input: oklch(0.22 0.03 275 / 18%);
+}
+
+
 @keyframes rise-in {
   from { opacity: 0; transform: translateY(18px); }
   to { opacity: 1; transform: translateY(0); }
